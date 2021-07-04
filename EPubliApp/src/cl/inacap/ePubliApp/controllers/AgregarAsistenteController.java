@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cl.inacap.ePubliModel.dao.AsistentesDAO;
 import cl.inacap.ePubliModel.dao.AsistentesDAOLocal;
 import cl.inacap.ePubliModel.dto.Asistente;
 
@@ -93,15 +94,16 @@ public class AgregarAsistenteController extends HttpServlet {
 		}
 		
 		if (errores.isEmpty()) {
-			Asistente asistente = new Asistente();
-			asistente.setRut(rut);
-			asistente.setNombre(nombre);
-			asistente.setApellido(apellido);
-			asistente.setEdad(edad);
-			asistente.setEmpresa(empresa);
-			asistente.setEstado(estado);
-			asistente.setRegion(region);
-			asistentesDAO.save(asistente);
+			Asistente a = new Asistente();
+			a.setRut(rut);
+			a.setNombre(nombre);
+			a.setApellido(apellido);
+			a.setEdad(edad);
+			a.setEmpresa(empresa);
+			a.setEstado(estado);
+			a.setRegion(region);
+			asistentesDAO.save(a);
+			new AsistentesDAO().guardar(a);
 			RequestDispatcher rd;
 			rd=request.getRequestDispatcher("VerAsistenteController.do");
 			rd.forward(request, response);

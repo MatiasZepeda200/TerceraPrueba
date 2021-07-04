@@ -10,6 +10,7 @@ import cl.inacap.ePubliModel.dto.Asistente;
 public interface AsistentesDAOLocal {
 
 	void save(Asistente asistente);
+	void guardar (Asistente a);
 	List<Asistente> getAll();
 	void delete(Asistente asistente);
 	List<Asistente> filterByName(String rut);
